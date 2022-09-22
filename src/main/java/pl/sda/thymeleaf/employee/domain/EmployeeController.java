@@ -3,10 +3,12 @@ package pl.sda.thymeleaf.employee.domain;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -35,7 +37,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/add-employee")
-    String addEmployee(Employee employee) {
+    String addEmployee(@Valid Employee employee, BindingResult result) {
+        if (result.hasErrors()) {
+            return "add-employee";
+        }
         service.saveEmployees(List.of(employee));
         return "redirect:/index";
     }
