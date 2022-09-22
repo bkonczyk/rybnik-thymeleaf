@@ -9,6 +9,7 @@
 <body>
 <div class="container my-5">
     <h2>Employees list</h2>
+    <a th:href="@{/add-employee-form}" class="btn btn-primary btn-sm mb-3">Add employee</a>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -27,7 +28,12 @@
             <td th:text="${employee.getSurname()}"></td>
             <td th:text="${employee.getEmail()}"></td>
             <td th:text="${employee.getAge()}"></td>
-            <td>ACTIONS</td>
+            <td>
+                <a th:href="@{'/update-employee-form/' + ${employee.id}}"
+                   class="btn btn-success btn-sm">Update</a>
+                <a th:href="@{'/delete-employee/' + ${employee.id}}"
+                   class="btn btn-danger btn-sm">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

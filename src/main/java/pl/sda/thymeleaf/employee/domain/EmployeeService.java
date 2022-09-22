@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +22,15 @@ public class EmployeeService {
     public List<Employee> getAll() {
         log.debug("Fetching all employees");
         return repository.findAll();
+    }
+
+    public Employee findById(Long id) {
+        return repository
+                .findById(id)
+                .orElseThrow(NoSuchElementException::new);
+    }
+
+    public void deleteEmployee(Long id) {
+        repository.deleteById(id);
     }
 }
