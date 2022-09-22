@@ -17,4 +17,9 @@ public class EmployeeService {
         log.debug("Saving a list of employees");
         repository.saveAll(employees);
     }
+
+    public List<Employee> getAll() {
+        log.debug("Fetching all employees");
+        return repository.findAll();
+    }
 }
