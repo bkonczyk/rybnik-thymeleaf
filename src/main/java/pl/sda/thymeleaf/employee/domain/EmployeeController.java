@@ -20,8 +20,8 @@ public class EmployeeController {
     private final EmployeeService service;
 
     @GetMapping
-    String redirect() {
-        return "redirect:/employees?page=1";
+    String index() {
+        return "index";
     }
 
     @GetMapping("/employees")
