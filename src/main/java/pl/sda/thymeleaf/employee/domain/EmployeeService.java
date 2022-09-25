@@ -2,6 +2,8 @@ package pl.sda.thymeleaf.employee.domain;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,11 @@ public class EmployeeService {
         return repository
                 .findById(id)
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    public Page<Employee> findPage(int number, int size){
+        PageRequest pageRequest = PageRequest.of(number - 1, size);
+        return repository.findAll(pageRequest);
     }
 
     public void deleteEmployee(Long id) {
