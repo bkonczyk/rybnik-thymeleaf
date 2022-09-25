@@ -1,18 +1,20 @@
 package pl.sda.thymeleaf.employee.domain.user;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.function.Supplier;
-
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository repository, @Lazy PasswordEncoder passwordEncoder) {
+        this.repository = repository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public void add(CreateUserRequest request) {
         User user = mapToUser(request);

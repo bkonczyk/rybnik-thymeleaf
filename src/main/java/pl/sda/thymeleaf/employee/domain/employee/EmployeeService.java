@@ -32,7 +32,7 @@ public class EmployeeService {
                 .orElseThrow(NoSuchElementException::new);
     }
 
-    public Page<Employee> findPage(int number, int size){
+    public Page<Employee> findPage(int number, int size) {
         PageRequest pageRequest = PageRequest.of(number - 1, size);
         return repository.findAll(pageRequest);
     }

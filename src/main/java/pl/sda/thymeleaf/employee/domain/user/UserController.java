@@ -25,8 +25,8 @@ public class UserController {
 
     @PostMapping
     String register(@ModelAttribute CreateUserRequest request) {
-      log.info("Received request to register {}", request.getUsername());
-      userService.add(request);
-      return "index";
+        log.info("Received request to register {}", request.getUsername());
+        userService.add(request);
+        return "index";
     }
 }

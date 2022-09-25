@@ -11,7 +11,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 public class UserDetailsAdapter implements UserDetails {
-    
+
     private final User user;
 
     @Override

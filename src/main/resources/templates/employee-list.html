@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>First starter page</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css">
+    <link href="/webjars/bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="/webjars/bootstrap/5.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -13,7 +13,7 @@
     <h2>Employees list</h2>
 
     <div sec:authorize="hasRole('ADMIN')">
-        <a th:href="@{/add-employee-form}" class="btn btn-primary btn-sm mb-3">Add
+        <a class="btn btn-primary btn-sm mb-3" th:href="@{/add-employee-form}">Add
             employee</a>
     </div>
 
@@ -37,10 +37,10 @@
             <td th:text="${employee.getEmail()}"></td>
             <td th:text="${employee.getAge()}"></td>
             <td sec:authorize="hasRole('ADMIN')">
-                <a th:href="@{'/update-employee-form/' + ${employee.id}}"
-                   class="btn btn-success btn-sm">Update</a>
-                <a th:href="@{'/delete-employee/' + ${employee.id}}"
-                   class="btn btn-danger btn-sm">Delete</a>
+                <a class="btn btn-success btn-sm"
+                   th:href="@{'/update-employee-form/' + ${employee.id}}">Update</a>
+                <a class="btn btn-danger btn-sm"
+                   th:href="@{'/delete-employee/' + ${employee.id}}">Delete</a>
             </td>
         </tr>
         </tbody>
@@ -49,20 +49,20 @@
         <ul class="pagination">
 
             <li class="page-item">
-                <a th:if="${currentPage == 1}" class="page-link disabled">Previous</a>
-                <a th:unless="${currentPage == 1}" th:href="@{'?page=' + ${currentPage - 1}}"
-                   class="page-link">Previous</a>
+                <a class="page-link disabled" th:if="${currentPage == 1}">Previous</a>
+                <a class="page-link" th:href="@{'?page=' + ${currentPage - 1}}"
+                   th:unless="${currentPage == 1}">Previous</a>
             </li>
 
             <li class="page-item" th:each="i: ${#numbers.sequence(1, totalPages)}">
-                <a class="page-link" th:if="${currentPage != i}" th:href="@{'?page=' + ${i} + '&size=' + ${size}}">[[${i}]]</a>
+                <a class="page-link" th:href="@{'?page=' + ${i} + '&size=' + ${size}}" th:if="${currentPage != i}">[[${i}]]</a>
                 <a class="page-link active" th:if="${currentPage == i}">[[${i}]]</a>
             </li>
 
             <li class="page-item">
-                <a th:if="${currentPage == totalPages}" class="page-link disabled">Next</a>
-                <a th:unless="${currentPage == totalPages}" th:href="@{'?page=' + ${currentPage + 1}}"
-                   class="page-link">Next</a>
+                <a class="page-link disabled" th:if="${currentPage == totalPages}">Next</a>
+                <a class="page-link" th:href="@{'?page=' + ${currentPage + 1}}"
+                   th:unless="${currentPage == totalPages}">Next</a>
             </li>
         </ul>
     </nav>
