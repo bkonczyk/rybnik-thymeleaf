@@ -47,10 +47,9 @@
     </table>
     <nav aria-label="...">
         <ul class="pagination">
-
             <li class="page-item">
                 <a class="page-link disabled" th:if="${currentPage == 1}">Previous</a>
-                <a class="page-link" th:href="@{'?page=' + ${currentPage - 1}}"
+                <a class="page-link" th:href="@{'?page=' + ${currentPage - 1} + '&size=' + ${size}}"
                    th:unless="${currentPage == 1}">Previous</a>
             </li>
 
@@ -61,10 +60,18 @@
 
             <li class="page-item">
                 <a class="page-link disabled" th:if="${currentPage == totalPages}">Next</a>
-                <a class="page-link" th:href="@{'?page=' + ${currentPage + 1}}"
+                <a class="page-link" th:href="@{'?page=' + ${currentPage + 1} + '&size=' + ${size}}"
                    th:unless="${currentPage == totalPages}">Next</a>
             </li>
+            <li class="list-group-item">
+                <ul class="list-group-horizontal-sm">
+                    <li th:each="i : ${sizes}">
+                        <a class="text-sm-center" th:href="@{'?page=1' + '&size=' + ${i}}">[[${i}]]&nbsp;</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
+
     </nav>
 </div>
 </body>
