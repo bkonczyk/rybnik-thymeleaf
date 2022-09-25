@@ -1,4 +1,4 @@
-package pl.sda.thymeleaf.employee.domain;
+package pl.sda.thymeleaf.employee.domain.employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

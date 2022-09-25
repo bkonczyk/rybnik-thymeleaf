@@ -1,4 +1,4 @@
-package pl.sda.thymeleaf.employee.domain;
+package pl.sda.thymeleaf.employee.domain.employee;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
