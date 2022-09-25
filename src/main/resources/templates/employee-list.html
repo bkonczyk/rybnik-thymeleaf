@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>First starter page</title>
@@ -11,7 +12,10 @@
 <div class="container my-5">
     <h2>Employees list</h2>
 
-    <a th:href="@{/add-employee-form}" class="btn btn-primary btn-sm mb-3">Add employee</a>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/add-employee-form}" class="btn btn-primary btn-sm mb-3">Add
+            employee</a>
+    </div>
 
 
     <table class="table table-striped">
@@ -22,7 +26,7 @@
             <th><p>surname</p></th>
             <th><p>email</p></th>
             <th><p>age</p></th>
-            <th><p>actions</p></th>
+            <th sec:authorize="hasRole('ADMIN')"><p>actions</p></th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +36,7 @@
             <td th:text="${employee.getSurname()}"></td>
             <td th:text="${employee.getEmail()}"></td>
             <td th:text="${employee.getAge()}"></td>
-            <td>
+            <td sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{'/update-employee-form/' + ${employee.id}}"
                    class="btn btn-success btn-sm">Update</a>
                 <a th:href="@{'/delete-employee/' + ${employee.id}}"
