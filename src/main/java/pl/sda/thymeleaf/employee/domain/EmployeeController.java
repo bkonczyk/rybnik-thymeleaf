@@ -37,7 +37,7 @@ public class EmployeeController {
         model.addAttribute("totalPages", employeePage.getTotalPages());
         model.addAttribute("totalElements", employeePage.getTotalElements());
 
-        return "index";
+        return "employee-list";
     }
 
     @GetMapping("/add-employee-form")
@@ -53,7 +53,7 @@ public class EmployeeController {
             return "add-employee";
         }
         service.saveEmployees(List.of(employee));
-        return "redirect:/index";
+        return "redirect:/employees";
     }
 
     @GetMapping("/update-employee-form/{id}")
@@ -69,12 +69,12 @@ public class EmployeeController {
             return "update-employee";
         }
         service.saveEmployees(List.of(employee));
-        return "redirect:/index";
+        return "redirect:/employee-list";
     }
 
     @GetMapping("/delete-employee/{id}")
     String deleteEmployee(@PathVariable Long id) {
         service.deleteEmployee(id);
-        return "redirect:/index";
+        return "redirect:/employee-list";
     }
 }
